@@ -1,9 +1,17 @@
 /* Variables CSS */
 :root {
-  --blue-manaflow: #007BFF;
+  --dark-bg: #0a0a0a;
+  --dark-surface: #121212;
+  --dark-card: #1a1a1a;
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00ff;
+  --neon-purple: #bc13fe;
+  --neon-green: #0fff50;
   --white: #FFFFFF;
-  --black-deep: #0A0A0A;
-  --gray-light: #F5F5F5;
+  --gray-light: #AAAAAA;
+  --gray-dark: #333333;
+  --text-primary: #E0E0E0;
+  --text-secondary: #AAAAAA;
   --font-family: 'Inter', sans-serif;
 }
 
@@ -17,7 +25,12 @@
 body {
   font-family: var(--font-family);
   line-height: 1.6;
-  color: var(--black-deep);
+  color: var(--text-primary);
+  background-color: var(--dark-bg);
+  background-image: 
+    linear-gradient(0deg, transparent 24%, rgba(0, 243, 255, 0.03) 25%, rgba(0, 243, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 243, 255, 0.03) 75%, rgba(0, 243, 255, 0.03) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(0, 243, 255, 0.03) 25%, rgba(0, 243, 255, 0.03) 26%, transparent 27%, transparent 74%, rgba(0, 243, 255, 0.03) 75%, rgba(0, 243, 255, 0.03) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
   scroll-behavior: smooth;
 }
 
@@ -33,7 +46,10 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: var(--blue-manaflow);
+  background-color: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue), 0 0 20px rgba(0, 243, 255, 0.3);
   z-index: 1000;
   padding: 1rem 0;
 }
@@ -48,9 +64,20 @@ body {
 }
 
 .logo h2 {
-  color: var(--white);
+  color: var(--neon-blue);
   font-weight: 600;
   font-size: 1.5rem;
+  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+  animation: flicker 3s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
 }
 
 .nav-menu {
@@ -63,11 +90,29 @@ body {
   color: var(--white);
   text-decoration: none;
   font-weight: 500;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .nav-menu a:hover {
-  opacity: 0.8;
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--neon-pink);
+  box-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
 }
 
 /* Hamburger menu */
@@ -87,7 +132,8 @@ body {
 
 /* Section Hero */
 .hero {
-  background-color: var(--blue-manaflow);
+  background: var(--dark-bg);
+  position: relative;
   color: var(--white);
   min-height: 100vh;
   display: flex;
@@ -95,18 +141,74 @@ body {
   justify-content: center;
   text-align: center;
   padding-top: 80px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 243, 255, 0.05), rgba(188, 19, 254, 0.05));
+  z-index: 0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 243, 255, 0.03) 3px, rgba(0, 243, 255, 0.03) 5px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 243, 255, 0.03) 3px, rgba(0, 243, 255, 0.03) 5px);
+  background-size: 100px 100px;
+  z-index: 1;
+  animation: grid-move 15s linear infinite;
+}
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content h1 {
   font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue), 0 0 30px var(--neon-blue);
+  letter-spacing: 2px;
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+  }
+  100% {
+    text-shadow: 0 0 15px var(--neon-blue), 0 0 25px var(--neon-blue), 0 0 35px var(--neon-blue);
+  }
 }
 
 .hero-subtitle {
   font-size: 1.25rem;
-  margin-bottom: 2.5rem;
-  opacity: 0.9;
+  margin-bottom: 2rem;
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink);
+  letter-spacing: 1px;
 }
 
 .btn {
@@ -116,29 +218,61 @@ body {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
-  border: none;
+  border: 2px solid var(--neon-green);
   cursor: pointer;
   font-size: 1rem;
+  background-color: transparent;
+  color: var(--neon-green);
+  text-shadow: 0 0 5px var(--neon-green);
+  box-shadow: 0 0 10px rgba(15, 255, 80, 0.3), inset 0 0 10px rgba(15, 255, 80, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(15, 255, 80, 0.3), transparent);
+  transition: all 0.6s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px rgba(15, 255, 80, 0.5), inset 0 0 15px rgba(15, 255, 80, 0.3);
+  color: var(--white);
+  text-shadow: 0 0 8px var(--neon-green);
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn-white {
-  background-color: var(--white);
-  color: var(--blue-manaflow);
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.3), inset 0 0 10px rgba(0, 243, 255, 0.2);
 }
 
 .btn-white:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.5), inset 0 0 15px rgba(0, 243, 255, 0.3);
+  text-shadow: 0 0 8px var(--neon-blue);
 }
 
 .btn-blue {
-  background-color: var(--blue-manaflow);
-  color: var(--white);
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.2);
 }
 
 .btn-blue:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5), inset 0 0 15px rgba(255, 0, 255, 0.3);
+  text-shadow: 0 0 8px var(--neon-pink);
 }
 
 /* Sections génériques */
@@ -160,7 +294,35 @@ section {
 
 /* Section À propos */
 .about {
-  background-color: var(--white);
+  background-color: var(--dark-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: var(--neon-blue);
+  opacity: 0.1;
+  filter: blur(70px);
+}
+
+.about::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--neon-purple);
+  opacity: 0.1;
+  filter: blur(80px);
 }
 
 .about-text {
@@ -173,7 +335,21 @@ section {
 
 /* Section Services */
 .services {
-  background-color: var(--gray-light);
+  background-color: var(--dark-bg);
+  position: relative;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: var(--neon-pink);
+  opacity: 0.1;
+  filter: blur(60px);
 }
 
 .services-grid {
@@ -184,16 +360,38 @@ section {
 }
 
 .service-card {
-  background-color: var(--white);
+  background-color: var(--dark-card);
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--neon-purple);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+  transform: translateX(-100%);
+  transition: all 0.6s ease;
+}
+
+.service-card:hover::before {
+  transform: translateX(0);
 }
 
 .service-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(188, 19, 254, 0.2);
+  border-color: var(--neon-purple);
+  background-color: rgba(26, 26, 26, 0.9);
 }
 
 .service-icon {
@@ -202,20 +400,36 @@ section {
 }
 
 .service-card h3 {
-  color: var(--blue-manaflow);
+  color: var(--neon-purple);
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  text-shadow: 0 0 5px var(--neon-purple);
 }
 
 .service-card p {
-  color: var(--black-deep);
-  opacity: 0.8;
+  color: var(--text-secondary);
 }
 
 /* Section Recrutement */
 .recruitment {
-  background-color: var(--white);
+  background-color: var(--dark-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.recruitment::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: var(--gradient-secondary);
+  opacity: 0.1;
+  filter: blur(70px);
+  border-radius: 50%;
+  z-index: 0;
 }
 
 .recruitment-text {
@@ -234,8 +448,42 @@ section {
 
 /* Section Contact */
 .contact {
-  background-color: var(--blue-manaflow);
+  background-color: var(--dark-bg);
+  position: relative;
   color: var(--white);
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink), var(--neon-purple), var(--neon-blue));
+  background-size: 300% 100%;
+  animation: gradient-move 5s linear infinite;
+}
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+.contact::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to top, rgba(106, 13, 173, 0.1), transparent);
+  z-index: 0;
 }
 
 .contact-info {
