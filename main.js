@@ -50,6 +50,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+
 // Animation d'apparition au scroll
 const observerOptions = {
   threshold: 0.1,

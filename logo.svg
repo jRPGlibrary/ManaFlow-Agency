@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <!-- Blue Crystal -->
+  <g id="crystal">
+    <path d="M510 150 L400 500 L290 150 L350 100 L450 100 Z" fill="#00a8ff" />
+    <path d="M510 150 L400 500 L550 200 L500 120 Z" fill="#0084ff" />
+    <path d="M290 150 L400 500 L250 200 L300 120 Z" fill="#0062ff" />
+    <path d="M350 100 L290 150 L300 120 Z" fill="#00c3ff" />
+    <path d="M450 100 L510 150 L500 120 Z" fill="#00c3ff" />
+    <path d="M350 100 L450 100 L400 80 Z" fill="#00c3ff" />
+    <!-- Crystal Outline -->
+    <path d="M510 150 L400 500 L290 150 L350 100 L450 100 Z M510 150 L400 500 L550 200 L500 120 Z M290 150 L400 500 L250 200 L300 120 Z" fill="none" stroke="#00e5ff" stroke-width="2" />
+  </g>
+  
+  <!-- Water Waves -->
+  <g id="waves">
+    <path d="M250 450 C300 400, 350 500, 400 450 C450 400, 500 500, 550 450" fill="none" stroke="#0084ff" stroke-width="15" stroke-linecap="round" />
+    <path d="M200 500 C250 450, 300 550, 350 500 C400 450, 450 550, 500 500 C550 450, 600 550, 650 500" fill="none" stroke="#0062ff" stroke-width="15" stroke-linecap="round" />
+  </g>
+  
+  <!-- Gold Stars -->
+  <g id="stars">
+    <path d="M320 180 L330 160 L340 180 L360 190 L340 200 L330 220 L320 200 L300 190 Z" fill="#ffd700" />
+    <path d="M460 220 L470 200 L480 220 L500 230 L480 240 L470 260 L460 240 L440 230 Z" fill="#ffd700" />
+  </g>
+  
+  <!-- Sparkles -->
+  <g id="sparkles">
+    <circle cx="380" cy="140" r="5" fill="#00e5ff" />
+    <circle cx="420" cy="160" r="5" fill="#00e5ff" />
+    <circle cx="450" cy="350" r="5" fill="#00e5ff" />
+    <circle cx="350" cy="350" r="5" fill="#00e5ff" />
+    <circle cx="670" cy="350" r="5" fill="#00e5ff" />
+  </g>
+  
+  <!-- Decorative Bottom Flourish -->
+  <path d="M300 700 C350 650, 400 680, 450 650 C500 680, 550 650, 600 700" fill="none" stroke="#0084ff" stroke-width="8" stroke-linecap="round" />
+</svg>
