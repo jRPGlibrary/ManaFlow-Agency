@@ -1,7 +1,7 @@
 // Script dédié pour gérer les liens sociaux et email
 document.addEventListener('DOMContentLoaded', function() {
   // Sélectionner tous les liens sociaux et email
-  const allLinks = document.querySelectorAll('.social-link, .email-link');
+  const allLinks = document.querySelectorAll('.social-link, .email-link'); // .email-link conservé si encore présent ailleurs
   
   // Ajouter des gestionnaires d'événements à chaque lien
   allLinks.forEach(link => {
