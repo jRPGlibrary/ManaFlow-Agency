@@ -10,22 +10,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Ajouter un nouvel écouteur d'événements
     link.addEventListener('click', function(e) {
-      // Empêcher le comportement par défaut
-      e.preventDefault();
-      
       // Récupérer l'URL du lien
-      const url = this.getAttribute('href');
-      
-      // Gestion spéciale pour les liens email
+      const url = this.getAttribute('href') || '';
+
+      // Si c'est un lien email, on laisse le comportement natif du navigateur (pas de preventDefault)
       if (url.startsWith('mailto:')) {
-        window.location.href = url;
-      } else {
-        // Ouvrir l'URL dans un nouvel onglet pour les autres liens
-        window.open(url, '_blank');
+        console.log('Lien mailto natif:', url);
+        return; // Laisse le navigateur ouvrir le client mail
       }
-      
+
+      // Pour les autres liens, empêcher le comportement par défaut et ouvrir dans un nouvel onglet
+      e.preventDefault();
+      window.open(url, '_blank', 'noopener,noreferrer');
+
       // Journaliser pour le débogage
-      console.log('Lien cliqué:', url);
+      console.log('Lien externe ouvert dans un nouvel onglet:', url);
     });
   });
   
