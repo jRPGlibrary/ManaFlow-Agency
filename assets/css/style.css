@@ -695,14 +695,13 @@ section {
   box-shadow: 0 8px 24px rgba(0,0,0,0.2);
   backdrop-filter: blur(10px);
   transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
-
-.slide.active .slide-content {
-  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-  border-color: rgba(0, 120, 212, 0.4);
-}
-
-
 
 .role-title {
   color: var(--blue-light);
@@ -720,6 +719,10 @@ section {
   list-style: none;
   padding: 0;
   margin: 0 0 1.25rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
 }
 
 .role-benefits li::before {
@@ -858,6 +861,7 @@ section {
   .slide-content {
     padding: 1rem;
     border-radius: 8px;
+    max-width: 100%;
   }
   
   .role-title {

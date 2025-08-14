@@ -30,3 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
   
   console.log('Gestionnaires d\'événements des liens initialisés');
 });
+// Add UTM parameters to outbound social links for analytics
+(function() {
+  const utm = '?utm_source=website&utm_medium=social_link&utm_campaign=header_socials';
+  document.querySelectorAll('.social-links a[href^="http"]').forEach(a => {
+    try {
+      const url = new URL(a.href);
+      if (!url.search.includes('utm_source')) {
+        url.searchParams.set('utm_source', 'website');
+        url.searchParams.set('utm_medium', 'social_link');
+        url.searchParams.set('utm_campaign', 'header_socials');
+        a.href = url.toString();
+      }
+    } catch (e) {}
+  });
+})();

@@ -51,6 +51,46 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
+// Helper: Smooth scroll for anchor links and add rel noopener noreferrer for external links
+(function() {
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Secure external links
+  document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+})();
+
+// Add aria-current to active nav link on scroll for accessibility
+(function() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  const options = { root: null, rootMargin: '0px', threshold: 0.5 };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => link.removeAttribute('aria-current'));
+        const id = entry.target.id;
+        const active = document.querySelector(`.nav-menu a[href="#${id}"]`);
+        if (active) active.setAttribute('aria-current', 'page');
+      }
+    });
+  }, options);
+
+  sections.forEach(section => observer.observe(section));
+})();
+
 // Animation d'apparition au scroll
 const observerOptions = {
   threshold: 0.1,
