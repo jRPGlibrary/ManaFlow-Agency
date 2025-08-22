@@ -69,6 +69,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   document.querySelectorAll('a[target="_blank"]').forEach(link => {
     link.setAttribute('rel', 'noopener noreferrer');
   });
+
+
 })();
 
 // Add aria-current to active nav link on scroll for accessibility
